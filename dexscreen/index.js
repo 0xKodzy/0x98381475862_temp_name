@@ -22,7 +22,6 @@ async function mainFetch(url) {
     }
 
     const data = await res.arrayBuffer();
-    console.log(data);
 
     return helper.barsSchema.safeFromBuffer(Buffer.from(data));
 }
