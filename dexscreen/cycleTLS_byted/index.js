@@ -85,10 +85,13 @@ const handleSpawn = (debug, fileName, port, filePath) => {
             // this.emit(requestId, { error: new Error(error) });
         }
         else {
-            debug
-                ? cleanExit(new Error(stderr))
-                //TODO add Correct error logging url request/ response/
-                : cleanExit(`Error Processing Request (please open an issue https://github.com/Danny-Dasilva/CycleTLS/issues/new/choose) -> ${stderr}`, false).then(() => handleSpawn(debug, fileName, port));
+            // DEXSCREENER UPDATE: REMOVE THIS BLOCK.
+            // Why tf would you want to exit the process on stderr?
+
+            // debug
+            //     ? cleanExit(new Error(stderr))
+            //     //TODO add Correct error logging url request/ response/
+            //     : cleanExit(`Error Processing Request (please open an issue https://github.com/Danny-Dasilva/CycleTLS/issues/new/choose) -> ${stderr}`, false).then(() => handleSpawn(debug, fileName, port));
         }
     });
 };
