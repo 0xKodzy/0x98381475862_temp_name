@@ -1,13 +1,17 @@
 import helper from "./schema.js";
-import initCycleTLS from 'cycletls';
+import initCycleTLS from './cycleTLS_byted/index.js';
 
-const url = 'https://io.dexscreener.com/dex/chart/amm/v3/uniswap/bars/ethereum/0x6Fa73848CfD2c7460A538B55E882C6F4e8Aff68c?&res=5&cb=10';
+const url = 'https://io.dexscreener.com/dex/chart/amm/v3/uniswap/bars/ethereum/0x0c3fdf9c70835f9be9db9585ecb6a1ee3f20a6c7?&res=5&cb=100';
 async function mainCycleTLS(url) {
     let cycleTLS = await initCycleTLS();
 
     let data = await cycleTLS(url, {}, `get`);
 
-    return helper.barsSchema.safeFromBuffer(Buffer.from(data.body, "ascii"));
+    // Experimental, only if you have replaced go binary and js file of cycleTLS with custom ones
+    return helper.barsSchema.safeFromBuffer(Buffer.from(data.bytes, "base64"));
+
+    // Default
+    // return helper.barsSchema.safeFromBuffer(Buffer.from(data.body, "ascii"));
 }
 
 async function mainFetch(url) {
@@ -18,6 +22,7 @@ async function mainFetch(url) {
     }
 
     const data = await res.arrayBuffer();
+    console.log(data);
 
     return helper.barsSchema.safeFromBuffer(Buffer.from(data));
 }
@@ -32,3 +37,5 @@ async function mainFetch(url) {
 console.log((await mainCycleTLS(url)));
 
 console.log((await mainFetch(url)));
+
+// generate a console bar chart

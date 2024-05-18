@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "cycletls": "^1.0.26",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0",
+    "ws": "^8.17.0"
+  }
+}
