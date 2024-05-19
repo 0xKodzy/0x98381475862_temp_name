@@ -1,4 +1,4 @@
-import { f4 as AvroObject, f_ as doubleType, f$ as stringType, g0 as boolType, f5 as literalType, f6 as ArrayType, fd as pr } from "./pages_catch-all.js"
+const { f4: AvroObject, f_: doubleType, f$: stringType, g0: boolType, f5: literalType, f6: ArrayType, fd: pr } = require("./pages_catch-all.js");
 
 const makerScreenerType = AvroObject({
     buys: doubleType(),
@@ -88,4 +88,4 @@ const helper = {
 //     const data = await res.arrayBuffer();
 // }
 
-export default helper
+module.exports = helper

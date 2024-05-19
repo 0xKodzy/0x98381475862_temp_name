@@ -1,7 +1,7 @@
-import helper from "./schema.js";
-import initCycleTLS from './cycleTLS_byted/index.js';
+const helper = require("./schema.js");
+const initCycleTLS = require('./cycleTLS_byted/index.js');
 
-const url = 'https://io.dexscreener.com/dex/chart/amm/v3/uniswap/bars/ethereum/0x0c3fdf9c70835f9be9db9585ecb6a1ee3f20a6c7?&res=5&cb=100';
+const url = 'https://io.dexscreener.com/dex/chart/amm/v3/uniswap/bars/ethereum/0x0c3fdf9c70835f9be9db9585ecb6a1ee3f20a6c7?&res=5&cb=1000';
 async function mainCycleTLS(url) {
     let cycleTLS = await initCycleTLS();
 
@@ -33,8 +33,10 @@ async function mainFetch(url) {
 // Ru
 // CycleTLS не парсит avro корректно из-за конвертации string -> bytes
 // когда в url указан параметр cb=100 или больше (кол-во баров), он не сможет декодировать
-console.log((await mainCycleTLS(url)));
+(async () => {
+    console.log((await mainCycleTLS(url)));
 
-console.log((await mainFetch(url)));
+    console.log((await mainFetch(url)));
+})()
 
 // generate a console bar chart
